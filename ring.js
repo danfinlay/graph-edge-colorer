@@ -24,7 +24,6 @@ class Ring {
       throw new Error('Vertex not found in vertices ' + JSON.stringify(vertex))
     }
     const lastIndex = 0 === index ? this.maxRingIndex : index - 1
-    console.log('got last for', index,  lastIndex)
     return this.vertices[lastIndex]
   }
 

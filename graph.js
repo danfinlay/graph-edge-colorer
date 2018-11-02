@@ -40,26 +40,33 @@ class Graph {
     let color = 0
 
     this.vertices.forEach((vertex, index) => {
+      if (index > ring.maxRingIndex) return
+
       color++
 
       let v1 = vertex
       let v2 = ring.nextVertex(v1)
 
       while (v1 !== v2) {
-        console.log('max ring index: ' + ring.maxRingIndex)
-        console.log('adding ', v1, v2)
         const edge = this.addEdge(v1, v2)
         edge.color = color
 
         v1 = ring.lastVertex(v1)
         v2 = ring.nextVertex(v2)
       }
-
-
     })
 
     if (!isOdd) {
 
+      let v1 = this.vertices[this.vertices.length - 1]
+
+      this.vertices.forEach((v2) => {
+        if (v1 === v2) return
+
+        const missingColor = v2.getMissingColor(color)
+        let edge = this.addEdge(v1, v2)
+        edge.color = missingColor
+      })
 
     }
 

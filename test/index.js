@@ -34,8 +34,6 @@ test('initializes graph', (t) => {
   const graph = new Module(numbers)
   graph.makeComplete()
   t.ok(graph)
-  console.dir(graph)
-
   const edgeLength = graph.edges.length
   const correctEdgeCount = numbers.length * (numbers.length - 1) / 2
   t.equal(edgeLength, correctEdgeCount, `should have ${correctEdgeCount} edges`)
@@ -56,7 +54,6 @@ test('initializes graph', (t) => {
   graph.edges.forEach((edge) => {
     if (!edge.color) {
       lacksColor = true
-      console.log('lacking color: ', edge)
     }
   })
   t.ok(!lacksColor, 'no edge lacks a color')
