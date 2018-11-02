@@ -72,14 +72,22 @@ class Graph {
   }
 
   print() {
-    let result = 'workshop, tribe1, tribe2\n'
+    let result = 'session, workshop id, tribe1, tribe2\n'
+
+    const colorCounts = {}
 
     result = this.edges
     .sort((a, b) => {
       return a.color > b.color ? 1 : -1
     })
     .reduce((result, edge) => {
-      result += `${edge.color} , ${edge.members[0].element} , ${edge.members[1].element} \n`
+      if (!(edge.color in colorCounts)) {
+        colorCounts[edge.color] = 1
+      } else {
+        colorCounts[edge.color]++
+      }
+
+      result += `${edge.color} , ${colorCounts[edge.color]} , ${edge.members[0].element} , ${edge.members[1].element} \n`
       return result
     }, result)
 
