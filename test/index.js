@@ -58,6 +58,17 @@ test('initializes graph', (t) => {
   })
   t.ok(!lacksColor, 'no edge lacks a color')
 
+  let vertexHasTwoSameColoredEdges = false
+  graph.vertices.forEach((vertex) => {
+    const edgeColors = vertex.edges.map(edge => edge.color)
+    const colorSet = new Set(edgeColors)
+    if (colorSet.size !== edgeColors.length) {
+      vertexHasTwoSameColoredEdges = true
+    }
+  })
+
+  t.ok(!vertexHasTwoSameColoredEdges, 'no vertex has two same colored edges')
+
   t.end()
 })
 

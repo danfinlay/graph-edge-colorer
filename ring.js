@@ -14,7 +14,6 @@ class Ring {
     }
 
     const nextIndex = this.maxRingIndex === index ? 0 : index + 1
-    console.log('got next for ', index, nextIndex)
     return this.vertices[nextIndex]
   }
 
