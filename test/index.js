@@ -1,6 +1,7 @@
 const test = require('tape')
 const Module = require('../graph')
 const Ring = require('../ring')
+const fs = require('fs')
 
 test('ring with even count', (t) => {
   const ring = new Ring([1,2,3,4,5,6,7,8,9,10])
@@ -68,6 +69,13 @@ test('initializes graph', (t) => {
   })
 
   t.ok(!vertexHasTwoSameColoredEdges, 'no vertex has two same colored edges')
+
+  t.equal(graph.edges.length, correctEdgeCount, 'retained correct edge count')
+
+  const csv = graph.print()
+  console.log(csv)
+  console.log(csv)
+  fs.writeFileSync(__dirname + '/result.csv', csv)
 
   t.end()
 })

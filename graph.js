@@ -69,7 +69,21 @@ class Graph {
       })
 
     }
+  }
 
+  print() {
+    let result = 'workshop, tribe1, tribe2\n'
+
+    result = this.edges
+    .sort((a, b) => {
+      return a.color > b.color ? 1 : -1
+    })
+    .reduce((result, edge) => {
+      result += `${edge.color} , ${edge.members[0].element} , ${edge.members[1].element} \n`
+      return result
+    }, result)
+
+    return result
   }
 
 }
